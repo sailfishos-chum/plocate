@@ -1,0 +1,15 @@
+[Unit]
+Description=Update the locate database (user-only)
+RefuseManualStart=no
+RefuseManualStop=no
+
+# try this to detect if user is logged in currently:
+ConditionPathExists=/run/user/%U
+ConditionPathExists=%h
+
+[Service]
+# note: gmLocate depends on this location and name!
+ExecStart=/usr/sbin/updatedb -l 0 -o %h/.cache/plocate.db -U %h
+CPUSchedulingPolicy=idle
+Nice=19
+IOSchedulingClass=idle
