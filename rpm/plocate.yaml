@@ -1,0 +1,116 @@
+Name: plocate
+Summary: A locate/updatedb implementation
+Version: 1.1.23
+Release: 0
+Group: Applications/File
+License: GPLv2
+URL: https://plocate.sesse.net/
+Sources:
+    # https://plocate.sesse.net/download/%{name}-%{version}.tar.gz
+    - '%{name}-%{version}.tar.gz'
+    - '%{name}-updatedb.conf'
+    - '%{name}-updatedb.service'
+    - '%{name}-updatedb.timer'
+    - '%{name}-updatedb-user.service'
+    - '%{name}-updatedb-user.timer'
+    - 'plocate-migrate-mlocate-db'
+Macros:
+    - 'sgid_group;privileged'
+    - 'dbloc;%{_localstatedir}/cache'
+    - 'dbname;%{dbloc}/%{name}.db'
+    - 'debug_build;0'
+
+SetupOptions: -q -n %{name}-%{version}/upstream
+
+Description: |
+    plocate is a locate(1) based on posting lists, completely replacing mlocate
+    with a much faster (and smaller) index. It is suitable as a default locate
+    on your system.
+
+    %if "0%{?_chum}"
+    PackageName: plocate
+    Type: console-application
+    Categories:
+     - Utility
+     - FileTools
+    Custom:
+      Repo: https://git.sesse.net/?p=plocate
+      PackagingRepo: https://github.com/sailfishos-chum/plocate
+    Url:
+      Homepage: https://plocate.sesse.net/
+    %endif
+
+PkgBR:
+    - cmake
+    - meson
+PkgConfigBR:
+    - libzstd
+Conflicts:
+    - harbour-mlocate
+    - mlocate
+Obsoletes:
+    - harbour-mlocate < 0.27
+    - mlocate < 0.27
+RequiresPost:
+  - '%{_libexecdir}/manage-groups'
+RequiresPostUn:
+  - '%{_libexecdir}/manage-groups'
+
+Configure: meson
+Builder: meson
+ConfigOptions:
+ - -Dinstall_cron=false
+ - -Dinstall_systemd=true
+ - -Dsystemunitdir=%{_unitdir}
+ - -Dlocategroup=%{sgid_group}
+# updatedb_progname', type: 'string', value: 'updatedb', description: 'Binary name of updatedb')
+# dbpath', type: 'string', value: 'plocate/plocate.db', description: 'Path to plocate database relative to "sharedstatedir"')
+NoDesktop: true
+Files:
+    - '%{_bindir}/plocate'
+    - '%{_sbindir}/plocate-build'
+    - '%{_sbindir}/updatedb'
+    - '%config %{_sysconfdir}/updatedb.conf'
+    - '%attr(2711,root,%{sgid_group}) %{_bindir}/plocate'
+    - '%{_localstatedir}/lib/%{name}/CACHEDIR.TAG'
+    - '%ghost %{_localstatedir}/lib/%{name}/%{name}.db'
+    - '%exclude %{_mandir}/*'
+
+SubPackages:
+    - Name:  service-user
+      Summary: User timer for updatedb
+      Description: |
+        Adds SystemD timer and service users can enable which will index only
+        their HOME and keep the database under ~/.cache
+
+      Group: System/Daemons
+      BuildArch: noarch
+      Obsoletes:
+          - harbour-mlocate-systemd-user
+          - mlocate-service-user
+      Conflicts:
+          - harbour-mlocate-systemd-user
+          - mlocate-service-user
+      RequiresPost:
+        - systemd
+      Files:
+        - '%{_userunitdir}/%{name}-updatedb-user.service'
+        - '%{_userunitdir}/%{name}-updatedb-user.timer'
+
+    - Name:  service-system
+      Summary: System timer for updatedb
+      Description: |
+        Adds SystemD timer and service which will keep the index up-to-date
+      Group: System/Daemons
+      BuildArch: noarch
+      Obsoletes:
+          - harbour-mlocate-systemd-system
+          - mlocate-service-system
+      Conflicts:
+          - harbour-mlocate-systemd-system
+          - mlocate-service-system
+      RequiresPost:
+        - systemd
+      Files:
+        - '%{_unitdir}/%{name}-updatedb.service'
+        - '%{_unitdir}/%{name}-updatedb.timer'

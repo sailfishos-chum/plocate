@@ -1,0 +1,12 @@
+[Unit]
+Description=Update the locate database
+RefuseManualStart=no
+RefuseManualStop=no
+
+[Service]
+# Do not use the Patchmanager library:
+Environment=NO_PM_PRELOAD=1
+ExecStart=/usr/sbin/updatedb
+CPUSchedulingPolicy=idle
+Nice=19
+IOSchedulingClass=idle

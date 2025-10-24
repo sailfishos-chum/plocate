@@ -1,0 +1,6 @@
+#!/bin/sh
+
+if [ -f /var/cache/mlocate.db ]; then
+    /usr/sbin/plocate-build /var/cache/mlocate.db /var/lib/plocate/plocate.db && rm /var/cache/mlocate.db
+fi
+exit 0

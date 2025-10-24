@@ -1,0 +1,10 @@
+[Unit]
+Description=Run updatedb periodically
+
+[Timer]
+Persistent=false
+OnCalendar=weekly
+WakeSystem=true
+
+[Install]
+WantedBy=timers.target
