@@ -1,3 +1,3 @@
 [submodule "upstream"]
 	path = upstream
-	url = http://git.sesse.net/plocate
+	url = https://git.sesse.net/plocate
