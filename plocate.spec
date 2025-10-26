@@ -114,6 +114,7 @@ pushd %{name}-%{version}
 %meson_install
 
 # >> install post
+ln -s %{_bindir}/plocate %{buildroot}/%{_bindir}/locate
 %{__install} -p -D -m 644 %{S:1} %{buildroot}/%{_sysconfdir}/updatedb.conf
 %{__install} -p -D -m 644 %{S:2} %{buildroot}/%{_unitdir}/%{name}-updatedb.service
 %{__install} -p -D -m 644 %{S:3} %{buildroot}/%{_unitdir}/%{name}-updatedb.timer
@@ -173,6 +174,7 @@ systemctl daemon-reload >/dev/null 2>&1 || :
 # << postun
 
 %files
+%{_bindir}/locate
 %{_bindir}/plocate
 %{_sbindir}/plocate-build
 %{_sbindir}/updatedb

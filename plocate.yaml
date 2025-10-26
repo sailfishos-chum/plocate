@@ -66,6 +66,7 @@ ConfigOptions:
 # dbpath', type: 'string', value: 'plocate/plocate.db', description: 'Path to plocate database relative to "sharedstatedir"')
 NoDesktop: true
 Files:
+    - '%{_bindir}/locate'
     - '%{_bindir}/plocate'
     - '%{_sbindir}/plocate-build'
     - '%{_sbindir}/updatedb'
