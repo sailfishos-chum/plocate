@@ -155,7 +155,6 @@ fi
 %systemd_postun %{name}-updatedb.timer
 if [ $1 = 0 ]; then
 #Do stuff specific to uninstalls
-rm -f %{dbname} || :
 else
 if [ $1 = 1 ]; then
 #Do stuff specific to upgrades
