@@ -24,7 +24,6 @@ Source2:    %{name}-updatedb.service
 Source3:    %{name}-updatedb.timer
 Source4:    %{name}-updatedb-user.service
 Source5:    %{name}-updatedb-user.timer
-Source6:    plocate-migrate-mlocate-db
 Source100:  plocate.yaml
 BuildRequires:  pkgconfig(libzstd)
 BuildRequires:  cmake
@@ -131,7 +130,7 @@ pushd %{name}-%{version}
 %post
 # >> post
 if [ -f /var/cache/mlocate.db ]; then
-  /usr/sbin/plocate-build /var/cache/mlocate.db /var/lib/plocate/plocate.db && rm -f /var/cache/mlocate.db
+/usr/sbin/plocate-build /var/cache/mlocate.db /var/lib/plocate/plocate.db && rm -f /var/cache/mlocate.db
 fi
 # See https://github.com/sailfishos/sailfish-setup/blob/master/scripts/manage-groups.sh
 #%%{_libexecdir}/manage-groups add %%{sgid_group} || :

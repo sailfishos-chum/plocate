@@ -13,7 +13,6 @@ Sources:
     - '%{name}-updatedb.timer'
     - '%{name}-updatedb-user.service'
     - '%{name}-updatedb-user.timer'
-    - 'plocate-migrate-mlocate-db'
 Macros:
     - 'sgid_group;privileged'
     - 'dbloc;%{_localstatedir}/cache'
