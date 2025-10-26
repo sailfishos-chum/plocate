@@ -20,7 +20,7 @@ Macros:
     - 'dbname;%{dbloc}/%{name}.db'
     - 'debug_build;0'
 
-SetupOptions: -q -n %{name}-%{version}/upstream
+#SetupOptions: -q -n %{name}-%{version}/upstream
 
 Description: |
     plocate is a locate(1) based on posting lists, completely replacing mlocate
