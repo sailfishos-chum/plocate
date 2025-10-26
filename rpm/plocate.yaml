@@ -51,10 +51,10 @@ Conflicts:
 Obsoletes:
     - harbour-mlocate < 0.27
     - mlocate < 0.27
-RequiresPost:
-  - '%{_libexecdir}/manage-groups'
-RequiresPostUn:
-  - '%{_libexecdir}/manage-groups'
+#RequiresPost:
+#  - '%{_libexecdir}/manage-groups'
+#RequiresPostUn:
+#  - '%{_libexecdir}/manage-groups'
 
 Configure: meson
 Builder: meson

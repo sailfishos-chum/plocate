@@ -26,8 +26,6 @@ Source4:    %{name}-updatedb-user.service
 Source5:    %{name}-updatedb-user.timer
 Source6:    plocate-migrate-mlocate-db
 Source100:  plocate.yaml
-Requires(post): %{_libexecdir}/manage-groups
-Requires(postun): %{_libexecdir}/manage-groups
 BuildRequires:  pkgconfig(libzstd)
 BuildRequires:  cmake
 BuildRequires:  meson
@@ -130,7 +128,7 @@ Adds SystemD timer and service which will keep the index up-to-date
 %post
 # >> post
 # See https://github.com/sailfishos/sailfish-setup/blob/master/scripts/manage-groups.sh
-%{_libexecdir}/manage-groups add %{sgid_group} || :
+#%%{_libexecdir}/manage-groups add %%{sgid_group} || :
 
 %post service-system
 systemctl enable %{name}-updatedb.timer || :
@@ -144,7 +142,7 @@ systemctl enable %{name}-updatedb.timer || :
 # >> postun
 # See https://github.com/sailfishos/sailfish-setup/blob/master/scripts/manage-groups.sh
 if [ "$1" -eq 0 ]; then
-%{_libexecdir}/manage-groups remove %{sgid_group} || :
+#%%{_libexecdir}/manage-groups remove %%{sgid_group} || :
 fi
 
 %postun service-system
