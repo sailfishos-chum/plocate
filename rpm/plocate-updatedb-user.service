@@ -9,7 +9,7 @@ ConditionPathExists=%h
 
 [Service]
 # note: gmLocate depends on this location and name!
-ExecStart=/usr/sbin/updatedb -l 0 -o %h/.cache/plocate.db -U %h
+ExecStart=/usr/sbin/updatedb -o %h/.cache/plocate.db -U %h
 CPUSchedulingPolicy=idle
 Nice=19
 IOSchedulingClass=idle
