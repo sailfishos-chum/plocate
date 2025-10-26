@@ -127,6 +127,9 @@ Adds SystemD timer and service which will keep the index up-to-date
 
 %post
 # >> post
+if [ -f /var/cache/mlocate.db ]; then
+  /usr/sbin/plocate-build /var/cache/mlocate.db /var/lib/plocate/plocate.db && rm -f /var/cache/mlocate.db
+fi
 # See https://github.com/sailfishos/sailfish-setup/blob/master/scripts/manage-groups.sh
 #%%{_libexecdir}/manage-groups add %%{sgid_group} || :
 
