@@ -89,6 +89,9 @@ Adds SystemD timer and service which will keep the index up-to-date
 %setup -q -n %{name}-%{version}
 
 # >> setup
+# tat_git: untar twice:
+tar xf %{S:0}
+pushd %{name}-%{version}
 # << setup
 
 %build
