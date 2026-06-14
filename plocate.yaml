@@ -42,8 +42,7 @@ Description: |
 PkgBR:
     - cmake
     - meson
-PkgConfigBR:
-    - libzstd
+    - ( pkgconfig(libzstd) or libzstd-devel )
 Conflicts:
     - harbour-mlocate
     - mlocate
