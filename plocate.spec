@@ -25,9 +25,9 @@ Source3:    %{name}-updatedb.timer
 Source4:    %{name}-updatedb-user.service
 Source5:    %{name}-updatedb-user.timer
 Source100:  plocate.yaml
+BuildRequires:  pkgconfig(libzstd)
 BuildRequires:  cmake
 BuildRequires:  meson
-BuildRequires:  ( pkgconfig(libzstd) or libzstd-devel )
 BuildRequires:  meson
 Conflicts:   harbour-mlocate
 Conflicts:   mlocate
