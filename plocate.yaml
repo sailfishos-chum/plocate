@@ -23,7 +23,8 @@ Macros2:
       Recommends: %{name}-service-user
       Recommends: %{name}-service-system
 
-#SetupOptions: -q -n %{name}-%{version}/upstream
+# 1.1.25 has a flat structure:
+SetupOptions: -q -c -n %{name}-%{version}
 
 Description: |
     plocate is a locate(1) based on posting lists, completely replacing mlocate

@@ -86,7 +86,7 @@ Recommends: %{name}-service-user
 Recommends: %{name}-service-system
 
 %prep
-%setup -q -n %{name}-%{version}
+%setup -q -c -n %{name}-%{version}
 
 # >> setup
 # tat_git: untar twice:
