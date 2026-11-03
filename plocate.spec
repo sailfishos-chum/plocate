@@ -13,7 +13,7 @@ Name:       plocate
 %define debug_build 0
 
 Summary:    A locate/updatedb implementation
-Version:    1.1.24
+Version:    1.1.25
 Release:    0
 Group:      Applications/File
 License:    GPLv2
