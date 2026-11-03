@@ -38,7 +38,7 @@ plocate is a locate(1) based on posting lists, completely replacing mlocate
 with a much faster (and smaller) index. It is suitable as a default locate
 on your system.
 
-%if "0%{?_chum}"
+%if 0%{?_chum}
 PackageName: plocate
 Type: console-application
 Categories:
@@ -53,7 +53,7 @@ Url:
 
 
 %package service-user
-Summary:    User timer for updatedb
+Summary:    User timer for (plocate) updatedb
 BuildArch:  noarch
 Requires:   %{name} = %{version}-%{release}
 Requires(post): systemd
@@ -63,12 +63,12 @@ Obsoletes:  harbour-mlocate-systemd-user
 Obsoletes:  mlocate-service-user
 
 %description service-user
-Adds SystemD timer and service users can enable which will index only
+Systemd timer and service units users can enable which will index only
 their HOME and keep the database under ~/.cache
 
 
 %package service-system
-Summary:    System timer for updatedb
+Summary:    System timer for (plocate) updatedb
 BuildArch:  noarch
 Requires:   %{name} = %{version}-%{release}
 Requires(post): systemd
@@ -78,7 +78,7 @@ Obsoletes:  harbour-mlocate-systemd-system
 Obsoletes:  mlocate-service-system
 
 %description service-system
-Adds SystemD timer and service which will keep the index up-to-date
+Systemd timer and service units which keep the index up-to-date
 
 
 %define nothing important
@@ -89,7 +89,6 @@ Recommends: %{name}-service-system
 %setup -q -c -n %{name}-%{version}
 
 # >> setup
-# tat_git: untar twice:
 # << setup
 
 %build

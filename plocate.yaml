@@ -31,7 +31,7 @@ Description: |
     with a much faster (and smaller) index. It is suitable as a default locate
     on your system.
 
-    %if "0%{?_chum}"
+    %if 0%{?_chum}
     PackageName: plocate
     Type: console-application
     Categories:
@@ -83,9 +83,9 @@ Files:
 
 SubPackages:
     - Name:  service-user
-      Summary: User timer for updatedb
+      Summary: User timer for (plocate) updatedb
       Description: |
-        Adds SystemD timer and service users can enable which will index only
+        Systemd timer and service units users can enable which will index only
         their HOME and keep the database under ~/.cache
 
       BuildArch: noarch
@@ -102,9 +102,9 @@ SubPackages:
         - '%{_userunitdir}/%{name}-updatedb-user.timer'
 
     - Name:  service-system
-      Summary: System timer for updatedb
+      Summary: System timer for (plocate) updatedb
       Description: |
-        Adds SystemD timer and service which will keep the index up-to-date
+        Systemd timer and service units which keep the index up-to-date
       BuildArch: noarch
       Obsoletes:
           - harbour-mlocate-systemd-system
