@@ -90,8 +90,6 @@ Recommends: %{name}-service-system
 
 # >> setup
 # tat_git: untar twice:
-tar xf %{S:0}
-pushd %{name}-%{version}
 # << setup
 
 %build
