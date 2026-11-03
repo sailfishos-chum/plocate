@@ -15,7 +15,6 @@ Name:       plocate
 Summary:    A locate/updatedb implementation
 Version:    1.1.25
 Release:    0
-Group:      Applications/File
 License:    GPLv2
 URL:        https://plocate.sesse.net/
 Source0:    https://plocate.sesse.net/download/%{name}-%{version}.tar.gz
@@ -55,7 +54,6 @@ Url:
 
 %package service-user
 Summary:    User timer for updatedb
-Group:      System/Daemons
 BuildArch:  noarch
 Requires:   %{name} = %{version}-%{release}
 Requires(post): systemd
@@ -71,7 +69,6 @@ their HOME and keep the database under ~/.cache
 
 %package service-system
 Summary:    System timer for updatedb
-Group:      System/Daemons
 BuildArch:  noarch
 Requires:   %{name} = %{version}-%{release}
 Requires(post): systemd

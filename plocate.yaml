@@ -2,7 +2,6 @@ Name: plocate
 Summary: A locate/updatedb implementation
 Version: 1.1.25
 Release: 0
-Group: Applications/File
 License: GPLv2
 URL: https://plocate.sesse.net/
 Sources:
@@ -83,7 +82,6 @@ SubPackages:
         Adds SystemD timer and service users can enable which will index only
         their HOME and keep the database under ~/.cache
 
-      Group: System/Daemons
       BuildArch: noarch
       Obsoletes:
           - harbour-mlocate-systemd-user
@@ -101,7 +99,6 @@ SubPackages:
       Summary: System timer for updatedb
       Description: |
         Adds SystemD timer and service which will keep the index up-to-date
-      Group: System/Daemons
       BuildArch: noarch
       Obsoletes:
           - harbour-mlocate-systemd-system
