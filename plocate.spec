@@ -81,6 +81,10 @@ Obsoletes:  mlocate-service-system
 Adds SystemD timer and service which will keep the index up-to-date
 
 
+%define nothing important
+Recommends: %{name}-service-user
+Recommends: %{name}-service-system
+
 %prep
 %setup -q -n %{name}-%{version}
 

@@ -17,6 +17,11 @@ Macros:
     - 'dbloc;%{_localstatedir}/cache'
     - 'dbname;%{dbloc}/%{name}.db'
     - 'debug_build;0'
+Macros2:
+    - |
+      nothing;important
+      Recommends: %{name}-service-user
+      Recommends: %{name}-service-system
 
 #SetupOptions: -q -n %{name}-%{version}/upstream
 
